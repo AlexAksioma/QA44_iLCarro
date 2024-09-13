@@ -6,7 +6,7 @@ import pages.HomePage;
 
 public class HomeTests extends ApplicationManager {
     @Test
-    public void firstTest(){
+    public void firstTest() {
         HomePage homePage = new HomePage(getDriver());
     }
 }

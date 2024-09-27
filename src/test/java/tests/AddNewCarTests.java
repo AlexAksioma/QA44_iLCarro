@@ -2,6 +2,7 @@ package tests;
 
 import dto.CarDto;
 import manager.ApplicationManager;
+import org.slf4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -11,6 +12,7 @@ import pages.LoginPage;
 import utils.Fuel;
 import utils.HeaderMenuItem;
 
+import java.lang.reflect.Method;
 import java.util.Random;
 
 import static pages.BasePage.clickButtonsOnHeader;
@@ -22,6 +24,7 @@ public class AddNewCarTests extends ApplicationManager {
 
     @BeforeMethod
     public void startAddCar() {
+        logger.info("start method --> startAddCar"+" user: alexmed123@gmail.com");
         new HomePage(getDriver());
         loginPage = clickButtonsOnHeader(HeaderMenuItem.LOGIN);
         loginPage.typeLoginForm("alexmed123@gmail.com", "Qwerty123!")
@@ -30,7 +33,7 @@ public class AddNewCarTests extends ApplicationManager {
     }
 
     @Test
-    public void addNewCarPositiveTest() {
+    public void addNewCarPositiveTest(Method method) {
         CarDto car = CarDto.builder()
                 .city("Haifa")
                 .manufacture("Toyota")
@@ -44,6 +47,7 @@ public class AddNewCarTests extends ApplicationManager {
                 .about("text")
                 .image("qa_yellow.png")
                 .build();
+        logger.info("start --> "+method.getName()+"with data: "+car.toString());
         letTheCarWorkPage.typeAddNewCarForm(car);
         letTheCarWorkPage.clickBtnSubmit();
         Assert.assertTrue(letTheCarWorkPage.validatePopUpMessage

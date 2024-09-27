@@ -36,8 +36,9 @@ public class LoginPage extends BasePage {
     }
 
     public LoginPage clickBtnYalla() {
-        pause(3);
-        btnYalla.click();
+        //pause(3);
+        //btnYalla.click();
+        clickWait(btnYalla, 3);
         return this;
     }
 
